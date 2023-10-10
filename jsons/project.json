@@ -1,0 +1,32 @@
+[
+    {
+        "title": "Task Column",
+        "tasks": ["task1", "task2"]
+    },
+    {
+        "projectId": 1,
+        "projectName": "project1",
+        "foonotes": "",
+        "comment": ["", ""],
+        "userInput": "",
+        "user": "JSmith99",
+        "date": "10/16/2023",
+        "replies": ["", ""],
+        "owner": "JSmith99",
+        "developers": ["JSmith99", "SkyWalker33"],
+        "scrumMaster": "JSmith99"
+    },
+    {
+        "projectId": 2,
+        "projectName": "project2",
+        "foonotes": "",
+        "comment": ["", ""],
+        "userInput": "",
+        "user": "SkyWalker33",
+        "date": "10/20/2023",
+        "replies": ["", ""],
+        "owner": "SkyWalker33",
+        "developers": ["SkyWalker33", "JSmith99"],
+        "scrumMaster": "SkyWalker33"
+    }
+]

@@ -1,0 +1,24 @@
+[
+    {
+        "taskId": 1,
+        "userId": 1,
+        "taskName": "task1",
+        "assignedUser" : "JSmith99",
+        "comment": "",
+        "priority": 2,
+        "estimatedTimeWorked": "10/16/2023",
+        "hours": 2.3,
+        "finished": false
+    },
+    {
+        "taskId": 2,
+        "userId": 2,
+        "taskName": "task2",
+        "assignedUser" : "SkyWalker33",
+        "comment": "",
+        "priority": 1,
+        "estimatedTimeWorked": "10/20/2023",
+        "hours": 4.6,
+        "finished": false
+    }
+]
