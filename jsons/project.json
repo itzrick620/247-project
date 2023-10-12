@@ -1,32 +1,42 @@
 [
     {
-        "title": "Task Column",
-        "tasks": ["task1", "task2"]
-    },
-    {
         "projectId": 1,
         "projectName": "project1",
         "foonotes": "",
-        "comment": ["", ""],
-        "userInput": "",
-        "user": "JSmith99",
+        "comments": [{
+            "userInput": "",
+            "user": "2e060e4c-d377-48d9-bb95-d237d1959405",
+            "date": "10/17/2023",
+            "replies": ["",""]
+        }],
+        "user": "2e060e4c-d377-48d9-bb95-d237d1959405",
         "date": "10/16/2023",
-        "replies": ["", ""],
-        "owner": "JSmith99",
         "developers": ["JSmith99", "SkyWalker33"],
-        "scrumMaster": "JSmith99"
+        "scrumMaster": "JSmith99", 
+        "columns":   [ {
+            "title": "Task Column",
+            "tasks": ["task1", "task2"]
+        }]
     },
     {
         "projectId": 2,
         "projectName": "project2",
         "foonotes": "",
-        "comment": ["", ""],
+        "comment": [{
+            "userInput": "",
+            "user": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
+            "date": "10/17/2023",
+            "replies": ["",""]
+        }],
         "userInput": "",
-        "user": "SkyWalker33",
+        "user": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
         "date": "10/20/2023",
         "replies": ["", ""],
-        "owner": "SkyWalker33",
         "developers": ["SkyWalker33", "JSmith99"],
-        "scrumMaster": "SkyWalker33"
+        "scrumMaster": "SkyWalker33",
+        "columns":   [ {
+            "title": "Task Column",
+            "tasks": ["task1", "task2"]
+        }]
     }
 ]

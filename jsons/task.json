@@ -1,9 +1,9 @@
 [
     {
         "taskId": 1,
-        "userId": 1,
+        "uuID": "2e060e4c-d377-48d9-bb95-d237d1959405",
         "taskName": "task1",
-        "assignedUser" : "JSmith99",
+        "assignedUser" : "uuid",
         "comment": "",
         "priority": 2,
         "estimatedTimeWorked": "10/16/2023",
@@ -11,10 +11,10 @@
         "finished": false
     },
     {
-        "taskId": 2,
-        "userId": 2,
+        "taskId": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
+        "uuID": 2,
         "taskName": "task2",
-        "assignedUser" : "SkyWalker33",
+        "assignedUser" : "uuid",
         "comment": "",
         "priority": 1,
         "estimatedTimeWorked": "10/20/2023",
