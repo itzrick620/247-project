@@ -1,4 +1,4 @@
-public class projectManagementSystem {
+public class ProjectManagementSystem {
     private String user;
     private String project;
 

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class database {
+public class Database {
     
     public void getUsers(ArrayList<User>) {
         return;

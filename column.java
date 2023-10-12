@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-public class column extends project {
+public class Column extends Project {
     private String title;
     ArrayList<Task> tasks;
 }

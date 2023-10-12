@@ -1,3 +1,3 @@
-public class comment {
+public class Comment {
     
 }
