@@ -11,7 +11,7 @@
         }],
         "user": "2e060e4c-d377-48d9-bb95-d237d1959405",
         "date": "10/16/2023",
-        "developers": ["JSmith99", "SkyWalker33"],
+        "developers": ["JSmith99"],
         "scrumMaster": "JSmith99", 
         "columns":   [ {
             "title": "Task Column",
@@ -32,7 +32,7 @@
         "user": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
         "date": "10/20/2023",
         "replies": ["", ""],
-        "developers": ["SkyWalker33", "JSmith99"],
+        "developers": ["SkyWalker33"],
         "scrumMaster": "SkyWalker33",
         "columns":   [ {
             "title": "Task Column",
