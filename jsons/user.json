@@ -1,6 +1,6 @@
 [
     {
-        "uuID": "2e060e4c-d377-48d9-bb95-d237d1959405" ,
+        "UUID": "2e060e4c-d377-48d9-bb95-d237d1959405" ,
         "username": "JSmith99",
         "password": "asdf99",
         "firstName": "John",
@@ -9,7 +9,7 @@
         "projects": ["project1", "project2"]
     },
     {
-        "uuID": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
+        "UUID": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
         "username": "SkyWalker33",
         "password": "asdf33",
         "firstName": "Sara",
