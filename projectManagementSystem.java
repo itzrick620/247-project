@@ -1,6 +1,6 @@
-public class ProjectManagementSystem {
-    private String user;
-    private String project;
+public class projectManagementSystem {
+    private User user;
+    private Project project;
 
     public void login(String username, String password) {
 
