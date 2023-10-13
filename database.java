@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
-public class Database {
+public class database {
     
-    public void getUsers(ArrayList<User>) {
-        return;
-    }
+    public ArrayList<User> getUsers() {
+        return null;
+    } 
 
-    public void getProjects(ArrayList<Project>) {
-        return;
-    }
+    public ArrayList<Project> getProjects() {
+        return null;
+    } 
 
     public boolean saveUsers() {
         return false;
