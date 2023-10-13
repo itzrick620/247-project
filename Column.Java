@@ -4,7 +4,7 @@ public class Column extends Project{
     private String title;
     ArrayList<Task> tasks;
 
-    public void addTask() {}
+    public void addTask(task: Task) {}
 
-    public void removeTask() {}
+    public void removeTask(task: task) {}
 }
