@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Column extends Project{
     private String title;
-    ArrayList<Task> task;
+    ArrayList<Task> tasks;
 
     public void addTask(task: Task) {}
 
