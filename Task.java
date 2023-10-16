@@ -1,9 +1,7 @@
 import java.util.ArrayList;
 import java.util.Date;
-import javax.xml.stream.events.Comment;
 
 
-import javax.xml.stream.events.Comment;
 
 public class Task {
     private String name;
@@ -14,15 +12,27 @@ public class Task {
     private double hours;
     private boolean status;
 
-    public void trackTime() {}
+    public void trackTime() {
+        
+    }
 
-    public void setPriority(Integer priority) {}
+    public void setPriority(Integer priority) {
+        
+    }
 
-    public void trackChanges() {}
+    public void trackChanges() {
 
-    public void saveHistory() {}
+    }
 
-    public void autoSave() {}
+    public void saveHistory() {
 
-    public void markAsCompleted() {}
+    }
+
+    public void autoSave() {
+
+    }
+
+    public void markAsCompleted() {
+
+    }
 }
