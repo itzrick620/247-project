@@ -60,4 +60,49 @@ public class User {
     public String getUsername() {
         return username;
     }
+
+    /**
+     * Gets the password of the user.
+     *
+     * @return The password of the user
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Gets the first name of the user.
+     *
+     * @return The first name of the user
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Gets the last name of the user.
+     *
+     * @return The last name of the user
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * Gets the email address of the user.
+     *
+     * @return The email address of the user
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * Gets the id of the user.
+     *
+     * @return The id of the user
+     */
+    public Object getId() {
+        return id;
+    }
 }
