@@ -1,6 +1,7 @@
-import.java.util.ArrayList
+import java.util.ArrayList;
+import java.util.Date;
 
-public class Comment extends Project {
+public class Comment {
     private String userInput;
     private User user;
     private Date date;
