@@ -1,23 +1,86 @@
 import java.util.UUID;
 import java.util.ArrayList;
+
+/**
+ * The Project class represents a project in a project management system.
+ */
 public class Project {
-    private UUID id;
-    private String name;
-    private String footnotes;
-    private User owner;
-    private User scrumMaster;
-    private ArrayList<Comment> comment;
-    private ArrayList<User> developers;
+    private UUID id; //task uuid
+    private String name; //task name
+    private String footnotes; //task footnotes
+    private User owner; //task owner
+    private User scrumMaster; //task scrummaster
+    private ArrayList<Comment> comments; //comments associated with the project
+    private ArrayList<User> developers; //developers associated with the project
+    private ArrayList<Task> tasks;
 
-    public Project(String name){}
+    /**
+     * Constructs a new project with a generated UUID and the given name.
+     *
+     * @param name The name of the project.
+     */
+    public Project(String name) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.comments = new ArrayList<>();
+        this.developers = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+    }
 
-    public Project(UUID id, String name){}
+    /**
+     * Constructs a new project with the specified UUID and name.
+     *
+     * @param id   The UUID of the project.
+     * @param name The name of the project.
+     */
+    public Project(UUID id, String name) {
+        this.id = id;
+        this.name = name;
+        this.comments = new ArrayList<>();
+        this.developers = new ArrayList<>();
+        this.tasks = new ArrayList<>();
+    }
 
-    public void addTask(Task task){}
+    /**
+     * Adds a task to the project.
+     *
+     * @param task The task to be added to the project.
+     */
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 
-    public void removeTask(Task task){}
+    /**
+     * Removes a task from the project.
+     *
+     * @param task The task to be removed from the project.
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
 
-    public void share(){}
+    /**
+     * Shares the project.
+     */
+    public void share() {
+        // Implement the sharing functionality
+    }
 
-    public void addFootnotes(){}
+    /**
+     * Adds footnotes to the project.
+     *
+     * @param footnotes The footnotes to be added to the project.
+     */
+    public void addFootnotes(String footnotes) {
+        this.footnotes = footnotes;
+    }
+
+    /**
+     * 
+     * 
+     * @param name Getting the name of the project
+    */
+    public String getName() {
+        return name;
+    }
 }
