@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 
-public class Column extends Project{
+public class Column {
     private String title;
-    ArrayList<Task> tasks;
+    private ArrayList<Task> tasks;
 
-    public void addTask(task: Task) {}
+    public void addTask(Task task) {}
 
-    public void removeTask(task: task) {}
+    public void removeTask(Task task) {}
 }
