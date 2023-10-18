@@ -17,7 +17,7 @@ public class ProjectManagementSystem {
         String password = scanner.nextLine();
 
         // Check if the user exists and validate password
-        User loggedInUser = userList.getUsers(username);
+        User loggedInUser = userList.getUser(username);
         if (loggedInUser != null && loggedInUser.getPassword().equals(password)) {
             System.out.println("Login successful.");
             user = loggedInUser;  // Set the logged-in user
