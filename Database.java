@@ -10,9 +10,9 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Database {
-    private static final String USERS_JSON_FILENAME = "user.json"; // JSON file name for users
+    private static final String USERS_JSON_FILENAME = "jsons/user.json"; // JSON file name for users
 
-    public ArrayList<User> getUsers() {
+    public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
 
         try (FileReader fileReader = new FileReader(USERS_JSON_FILENAME)) {
@@ -38,7 +38,8 @@ public class Database {
         return users;
     }
 
-    public boolean saveUsers(ArrayList<User> userList) {
+    public static boolean saveUsers() {
+        ArrayList<User> userList = UserList.getInstance().getUsers();
         JSONArray jsonArray = new JSONArray();
     
         for (User user : userList) {
@@ -70,5 +71,21 @@ public class Database {
 
     public ArrayList<Project> getProjects() {
         return null;
+    }
+
+    public static void main(String[] args){
+         UserList.getInstance().addUser("bwhite", "12345", "Bobby", "White", "bwhite@gmail.com");
+         UserList.getInstance().saveUsers();
+
+        ArrayList<User> users = UserList.getInstance().getUsers();
+
+        for(User user : users) {
+            System.out.println(user);
+        }
+
+        //login as amysmith
+        User user = UserList.getInstance().getUser("asmith");
+
+        System.out.println("Logged in as " + user);
     }
 }

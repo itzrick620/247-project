@@ -102,7 +102,11 @@ public class User {
      *
      * @return The id of the user
      */
-    public Object getId() {
+    public UUID getId() {
         return id;
+    }
+
+    public String toString(){
+        return this.firstName;
     }
 }

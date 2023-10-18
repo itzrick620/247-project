@@ -8,7 +8,7 @@ public class UserList {
     private static UserList userListInstance;  // Singleton instance
 
     private UserList() {
-        users = new ArrayList<>();
+        users = Database.getUsers();
     }
 
     /**
@@ -68,5 +68,13 @@ public class UserList {
             }
         }
         return null;
+    }
+
+    public ArrayList<User> getUsers(){
+        return users;
+    }
+
+    public void saveUsers() {
+        Database.saveUsers();
     }
 }

@@ -1,0 +1,18 @@
+[
+    {
+        "firstName": "John",
+        "lastName": "Smith",
+        "password": "asdf99",
+        "UUID": "2e060e4c-d377-48d9-bb95-d237d1959405",
+        "email": "jsmith@gmail.com",
+        "username": "JSmith99"
+    },
+    {
+        "firstName": "Sara",
+        "lastName": "Walker",
+        "password": "asdf33",
+        "UUID": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
+        "email": "swalker@gmail.com",
+        "username": "SkyWalker33"
+    }
+]
