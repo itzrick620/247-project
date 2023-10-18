@@ -55,8 +55,18 @@ public class ProjectManagementSystem {
       } else {
           System.out.println("Signup failed. Username already exists.");
       }
+
+      scanner.close();
   }
 
     public void createProject(String name) {
+    }
+
+    public boolean addTaskToProject(Task task) {
+        return false;
+    }
+
+    public void makeProjectComment(String userInput) {
+        
     }
 }
