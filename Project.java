@@ -75,6 +75,29 @@ public class Project {
         this.footnotes = footnotes;
     }
 
+    private static Project project;
+
+    /**
+     * Get the instance of the ProjectList using the Singleton pattern.
+     *
+     * @return The ProjectList instance.
+     */
+    public Project getInstance() {
+        if (project == null) {
+            project = new Project(name);
+        }
+        return project;
+    }
+
+      /**
+     * Gets the id of the user.
+     *
+     * @return The id of the project
+     */
+    public UUID getId() {
+        return id;
+    }
+
     /**
      * 
      * 
