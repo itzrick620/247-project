@@ -32,9 +32,9 @@ public class ProjectList {
      * @param project The project to be added.
      * @return true if the project was added successfully, false otherwise.
      */
-    public boolean addProject(String name) {
-        Project newProject = new Project(name);
-        return projects.add(newProject);
+    public Project addProject(String name) {
+        Project project = new Project(name);
+        return project;
     }
 
     /**
