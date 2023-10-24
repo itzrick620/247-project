@@ -46,8 +46,9 @@ public class Project {
      *
      * @param task The task to be added to the project.
      */
-    public void addTask(Task task) {
-        tasks.add(task);
+    public Task addTask(String name) {
+        Task task = new Task(name);
+        return task;
     }
 
     /**
@@ -73,20 +74,6 @@ public class Project {
      */
     public void addFootnotes(String footnotes) {
         this.footnotes = footnotes;
-    }
-
-    private static Project project;
-
-    /**
-     * Get the instance of the ProjectList using the Singleton pattern.
-     *
-     * @return The ProjectList instance.
-     */
-    public Project getInstance() {
-        if (project == null) {
-            project = new Project(name);
-        }
-        return project;
     }
 
       /**
