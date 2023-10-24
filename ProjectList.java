@@ -32,8 +32,9 @@ public class ProjectList {
      * @param project The project to be added.
      * @return true if the project was added successfully, false otherwise.
      */
-    public boolean addProject(Project project) {
-        return projects.add(project);
+    public boolean addProject(String name) {
+        Project newProject = new Project(name);
+        return projects.add(newProject);
     }
 
     /**
@@ -42,8 +43,15 @@ public class ProjectList {
      * @param project The project to be removed.
      * @return true if the project was removed successfully, false otherwise.
      */
-    public boolean removeProject(Project project) {
-        return projects.remove(project);
+    public boolean removeProject(String name) {
+        Project projectToRemove = null;
+        for (Project project : projects) {
+            if (project.getName().equals(name)) {
+                projectToRemove = project;
+                break;
+            }
+        }
+        return projectToRemove != null && projects.remove(projectToRemove);
     }
 
     /**
