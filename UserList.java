@@ -61,15 +61,13 @@ public class UserList {
      * @param username The username of the user to retrieve
      * @return The User object if found, null otherwise
      */
-    public boolean getUser(String username) {
-        User userToAdd = null;
+    public User getUser(String username) {
         for (User user : users) {
             if (user.getUsername().equals(username)) {
-                userToAdd = user;
-                break;
+                return user;
             }
         }
-        return userToAdd != null && users.add(userToAdd);
+        return null;
     }
 
     public ArrayList<User> getUsers(){
