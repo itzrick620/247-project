@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
 public class ProjectManagementSystem {
-    private boolean user;
-    private boolean project;
+    private User user;
+    private Project project;
     private UserList userList;  // Add the UserList instance
 
     public ProjectManagementSystem() {
@@ -10,22 +10,21 @@ public class ProjectManagementSystem {
     }
 
     public boolean login(String username) {
-
         user = UserList.getInstance().getUser(username);
-        return user;
+        return user != null;
     }
 
     public boolean signUp(String username, String password, String firstName, String lastName, String email) {
-        user = UserList.getInstance().addUser(username, password, firstName, lastName, email);
-        return user;
+        return UserList.getInstance().addUser(username, password, firstName, lastName, email);
   }
 
     public boolean createProject(String name) {
         project = ProjectList.getInstance().addProject(name);
+        return project != null;
     }
 
     public boolean addTaskToProject(Task task) {
-        project = Project.addTask(task);
+        return project.addTask(task);
     }
 
     public void makeProjectComment(String userInput) {
