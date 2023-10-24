@@ -11,6 +11,7 @@ import org.json.simple.parser.ParseException;
 
 public class Database {
     private static final String USERS_JSON_FILENAME = "jsons/user.json"; // JSON file name for users
+    private static final String PROJECTS_JSON_FILENAME = "jsons/project.json"; //JSON file name for projects
 
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
@@ -63,15 +64,54 @@ public class Database {
         }
     }
     
-
-
     public boolean saveProjects() {
-        return false;
+        ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
+        JSONArray jsonArray = new JSONArray();
+
+        for (Project project : projectList) {
+            JSONObject projectJson = new JSONObject();
+            projectJson.put("projectId", project.getId().toString());
+            projectJson.put("projectName", project.getName());
+            // Add more attributes as needed
+
+            jsonArray.add(projectJson);
+        }
+
+        try (FileWriter fileWriter = new FileWriter(PROJECTS_JSON_FILENAME)) {
+            fileWriter.write(jsonArray.toJSONString());
+            fileWriter.flush();
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
-    public ArrayList<Project> getProjects() {
-        return null;
+    public static ArrayList<Project> getProjects() {
+        ArrayList<Project> projects = new ArrayList<>();
+    
+        try (FileReader fileReader = new FileReader(PROJECTS_JSON_FILENAME)) {
+            JSONParser parser = new JSONParser();
+            JSONArray jsonArray = (JSONArray) parser.parse(fileReader);
+    
+            for (Object obj : jsonArray) {
+                JSONObject projectJson = (JSONObject) obj;
+                String projectId = (String) projectJson.get("projectId");
+                String projectName = (String) projectJson.get("projectName");
+                // Add more attributes as needed
+    
+                Project project = new Project(UUID.fromString(projectId), projectName);
+                // Add more attributes as needed
+    
+                projects.add(project);
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    
+        return projects;
     }
+    
 
     public static void main(String[] args){
          UserList.getInstance().addUser("bwhite", "12345", "Bobby", "White", "bwhite@gmail.com");
