@@ -70,10 +70,18 @@ public class UserList {
         return null;
     }
 
+    /**
+     * Gets a list of all users.
+     *
+     * @return An ArrayList containing all users
+     */
     public ArrayList<User> getUsers(){
         return users;
     }
 
+    /**
+     * Saves the list of users to the database.
+     */
     public void saveUsers() {
         Database.saveUsers();
     }
