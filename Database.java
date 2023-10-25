@@ -9,10 +9,18 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * The Database class handles data storage and retrieval from JSON files.
+ */
 public class Database {
-    private static final String USERS_JSON_FILENAME = "jsons/user.json"; // JSON file name for users
-    private static final String PROJECTS_JSON_FILENAME = "jsons/project.json"; //JSON file name for projects
+    private static final String USERS_JSON_FILENAME = "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\user.json"; 
+    private static final String PROJECTS_JSON_FILENAME = "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\project.json"; 
 
+    /**
+     * Retrieves a list of users from the JSON file.
+     *
+     * @return An ArrayList containing the retrieved users
+     */
     public static ArrayList<User> getUsers() {
         ArrayList<User> users = new ArrayList<>();
 
@@ -39,10 +47,15 @@ public class Database {
         return users;
     }
 
+    /**
+     * Saves the list of users to a JSON file.
+     *
+     * @return true if the users are saved successfully, false otherwise
+     */
     public static boolean saveUsers() {
         ArrayList<User> userList = UserList.getInstance().getUsers();
         JSONArray jsonArray = new JSONArray();
-    
+
         for (User user : userList) {
             JSONObject userJson = new JSONObject();
             userJson.put("UUID", user.getId().toString());
@@ -53,7 +66,7 @@ public class Database {
             userJson.put("email", user.getEmail());
             jsonArray.add(userJson);
         }
-    
+
         try (FileWriter fileWriter = new FileWriter(USERS_JSON_FILENAME)) {
             fileWriter.write(jsonArray.toJSONString());
             fileWriter.flush();
@@ -63,8 +76,13 @@ public class Database {
             return false;
         }
     }
-    
-    public boolean saveProjects() {
+
+    /**
+     * Saves the list of projects to a JSON file.
+     *
+     * @return true if the projects are saved successfully, false otherwise
+     */
+    public static boolean saveProjects() {
         ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
         JSONArray jsonArray = new JSONArray();
 
@@ -87,45 +105,33 @@ public class Database {
         }
     }
 
+    /**
+     * Retrieves a list of projects from the JSON file.
+     *
+     * @return An ArrayList containing the retrieved projects
+     */
     public static ArrayList<Project> getProjects() {
         ArrayList<Project> projects = new ArrayList<>();
-    
+
         try (FileReader fileReader = new FileReader(PROJECTS_JSON_FILENAME)) {
             JSONParser parser = new JSONParser();
             JSONArray jsonArray = (JSONArray) parser.parse(fileReader);
-    
+
             for (Object obj : jsonArray) {
                 JSONObject projectJson = (JSONObject) obj;
                 String projectId = (String) projectJson.get("projectId");
                 String projectName = (String) projectJson.get("projectName");
                 // Add more attributes as needed
-    
+
                 Project project = new Project(UUID.fromString(projectId), projectName);
                 // Add more attributes as needed
-    
+
                 projects.add(project);
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-    
+
         return projects;
-    }
-    
-
-    public static void main(String[] args){
-         UserList.getInstance().addUser("bwhite", "12345", "Bobby", "White", "bwhite@gmail.com");
-         UserList.getInstance().saveUsers();
-
-        ArrayList<User> users = UserList.getInstance().getUsers();
-
-        for(User user : users) {
-            System.out.println(user);
-        }
-
-        //login as amysmith
-        User user = UserList.getInstance().getUser("asmith");
-
-        System.out.println("Logged in as " + user);
     }
 }
