@@ -106,6 +106,11 @@ public class User {
         return id;
     }
 
+    /**
+     * Returns a string representation of the user.
+     *
+     * @return The user's first name
+     */
     public String toString(){
         return this.firstName;
     }
