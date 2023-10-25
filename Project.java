@@ -44,10 +44,12 @@ public class Project {
     /**
      * Adds a task to the project.
      *
-     * @param task The task to be added to the project.
+     * @param name The name of the task to be added.
+     * @return The created Task object.
      */
     public Task addTask(String name) {
         Task task = new Task(name);
+        tasks.add(task);
         return task;
     }
 
