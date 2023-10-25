@@ -22,11 +22,35 @@ public class Main {
             switch (choice) {
                 case 1:
                     scanner.nextLine(); // Consume the newline character
-                    pms.login();
+                    System.out.print("Enter username: ");
+                    String username = scanner.nextLine();
+                    System.out.print("Enter password: ");
+                    String password = scanner.nextLine();
+
+                    if (pms.login(username, password)) {
+                        System.out.println("Login successful!");
+                    } else {
+                        System.out.println("Login failed. Please try again.");
+                    }
                     break;
                 case 2:
                     scanner.nextLine(); // Consume the newline character
-                    pms.signUp();
+                    System.out.print("Enter username: ");
+                    String newUsername = scanner.nextLine();
+                    System.out.print("Enter password: ");
+                    String newPassword = scanner.nextLine();
+                    System.out.print("Enter first name: ");
+                    String firstName = scanner.nextLine();
+                    System.out.print("Enter last name: ");
+                    String lastName = scanner.nextLine();
+                    System.out.print("Enter email: ");
+                    String email = scanner.nextLine();
+
+                    if (pms.signUp(newUsername, newPassword, firstName, lastName, email)) {
+                        System.out.println("Signup successful. Welcome, " + firstName + "!");
+                    } else {
+                        System.out.println("Signup failed. Username already exists.");
+                    }
                     break;
                 case 3:
                     System.out.println("Exiting the program. Goodbye!");
