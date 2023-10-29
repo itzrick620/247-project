@@ -1,7 +1,6 @@
 [
     {
-        "taskId": 1,
-        "UUID": "2e060e4c-d377-48d9-bb95-d237d1959405",
+        "UUID": "113e7187-cefb-4993-a278-da64d665522a",
         "taskName": "task1",
         "assignedUser" : "2e060e4c-d377-48d9-bb95-d237d1959405",
         "comment": "",
@@ -11,8 +10,7 @@
         "finished": false
     },
     {
-        "taskId": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
-        "UUID": 2,
+        "taskId": "a12a9754-5786-49e1-bfa3-2331a99e7936",
         "taskName": "task2",
         "assignedUser" : "40fa2bd3-3072-426a-b48a-2e3053ee372c",
         "comment": "",
