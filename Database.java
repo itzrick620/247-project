@@ -13,8 +13,8 @@ import org.json.simple.parser.ParseException;
  * The Database class handles data storage and retrieval from JSON files.
  */
 public class Database {
-    private static final String USERS_JSON_FILENAME = "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\user.json"; 
-    private static final String PROJECTS_JSON_FILENAME = "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\project.json"; 
+    private static final String USERS_JSON_FILENAME = "jsons/user.json"; 
+    private static final String PROJECTS_JSON_FILENAME = "jsons/project.json"; 
 
     /**
      * Retrieves a list of users from the JSON file.
