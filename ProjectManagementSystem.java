@@ -44,11 +44,11 @@ public class ProjectManagementSystem {
         return project != null;
     }
 
-    // public boolean addTaskToProject(Task task) {
-    //     return project.addTask(task);
-    // }
+    public boolean addTaskToProject(String name) {
+        return project.addTask(name) != null;
+    }
 
-    public void makeProjectComment(String userInput) {
-        // Implement project comment functionality
+    public boolean makeProjectComment(String userInput) {
+        return project.addTask(userInput) != null;
     }
 }
