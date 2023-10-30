@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProjectManagementSystem {
@@ -37,8 +38,6 @@ public class ProjectManagementSystem {
         return isSignUpSuccessful;
     }
     
-    
-
     public boolean createProject(String name) {
         project = ProjectList.getInstance().addProject(name);
         return project != null;
@@ -48,7 +47,7 @@ public class ProjectManagementSystem {
         return project.addTask(name) != null;
     }
 
-    public boolean makeProjectComment(String userInput) {
-        return project.addTask(userInput) != null;
+    public boolean makeProjectComment(ArrayList<Comment> comment) {
+        return project.addComment(comment) != null;
     }
 }
