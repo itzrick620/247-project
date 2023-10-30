@@ -1,5 +1,7 @@
 import java.util.UUID;
 import java.util.ArrayList;
+import java.util.Date;
+
 
 /**
  * The Project class represents a project in a project management system.
@@ -13,6 +15,7 @@ public class Project {
     private ArrayList<Comment> comments; //comments associated with the project
     private ArrayList<User> developers; //developers associated with the project
     private ArrayList<Task> tasks;
+    private Date date;
 
     /**
      * Constructs a new project with a generated UUID and the given name.
@@ -76,6 +79,12 @@ public class Project {
      */
     public void addFootnotes(String footnotes) {
         this.footnotes = footnotes;
+    }
+
+    public Comment addComment(ArrayList<Comment> comments) {
+        Comment comment = new Comment(footnotes, owner, date, comments);
+        comments.add(comment);
+        return comment;
     }
 
       /**
