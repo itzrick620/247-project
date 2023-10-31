@@ -4,85 +4,108 @@ import java.util.ArrayList;
  * Manages a list of users in the project management system.
  */
 public class UserList {
-    private ArrayList<User> users;  // List of users
-    private static UserList userListInstance;  // Singleton instance
 
-    private UserList() {
-        users = Database.getUsers();
-    }
+  private ArrayList<User> users; // List of users
+  private static UserList userListInstance; // Singleton instance
 
-    /**
-     * Gets the singleton instance of UserList.
-     *
-     * @return The UserList instance
-     */
-    public static UserList getInstance() {
-        if (userListInstance == null) {
-            userListInstance = new UserList();
-        }
-        return userListInstance;
-    }
+  private UserList() {
+    users = Database.getUsers();
+  }
 
-    /**
-     * Adds a new user to the list.
-     *
-     * @param username  User's username
-     * @param password  User's password
-     * @param firstName User's first name
-     * @param lastName  User's last name
-     * @param email     User's email address
-     * @return true if the user is added successfully, false otherwise
-     */
-    public boolean addUser(String username, String password, String firstName, String lastName, String email) {
-        User newUser = new User(username, password, firstName, lastName, email);
-        return users.add(newUser);
+  /**
+   * Gets the singleton instance of UserList.
+   *
+   * @return The UserList instance
+   */
+  public static UserList getInstance() {
+    if (userListInstance == null) {
+      userListInstance = new UserList();
     }
+    return userListInstance;
+  }
 
-    /**
-     * Removes a user from the list.
-     *
-     * @param username The username of the user to remove
-     * @return true if the user is removed successfully, false otherwise
-     */
-    public boolean removeUser(String username) {
-        User userToRemove = null;
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                userToRemove = user;
-                break;
-            }
-        }
-        return userToRemove != null && users.remove(userToRemove);
-    }
+  /**
+   * Adds a new user to the list.
+   *
+   * @param username  User's username
+   * @param password  User's password
+   * @param firstName User's first name
+   * @param lastName  User's last name
+   * @param email     User's email address
+   * @return true if the user is added successfully, false otherwise
+   */
+  public boolean addUser(
+    String username,
+    String password,
+    String firstName,
+    String lastName,
+    String email
+  ) {
+    User newUser = new User(username, password, firstName, lastName, email);
+    return users.add(newUser);
+  }
 
-    /**
-     * Gets a user by their username.
-     *
-     * @param username The username of the user to retrieve
-     * @return The User object if found, null otherwise
-     */
-    public User getUser(String username) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                return user;
-            }
-        }
-        return null;
+  /**
+   * Removes a user from the list.
+   *
+   * @param username The username of the user to remove
+   * @return true if the user is removed successfully, false otherwise
+   */
+  public boolean removeUser(String username) {
+    User userToRemove = null;
+    for (User user : users) {
+      if (user.getUsername().equals(username)) {
+        userToRemove = user;
+        break;
+      }
     }
+    return userToRemove != null && users.remove(userToRemove);
+  }
 
-    /**
-     * Gets a list of all users.
-     *
-     * @return An ArrayList containing all users
-     */
-    public ArrayList<User> getUsers(){
-        return users;
+  /**
+   * Gets a user by their username.
+   *
+   * @param username The username of the user to retrieve
+   * @return The User object if found, null otherwise
+   */
+  public User getUser(String username) {
+    for (User user : users) {
+      if (user.getUsername().equals(username)) {
+        return user;
+      }
     }
+    return null;
+  }
 
-    /**
-     * Saves the list of users to the database.
-     */
-    public void saveUsers() {
-        Database.saveUsers();
+  /**
+   * Gets a list of all users.
+   *
+   * @return An ArrayList containing all users
+   */
+  public ArrayList<User> getUsers() {
+    return users;
+  }
+
+  /**
+   * Saves the list of users to the database.
+   */
+  public void saveUsers() {
+    Database.saveUsers();
+  }
+
+  /**
+   * Adds an existing user to the user list.
+   *
+   * @param user The user to add.
+   * @return true if the user was added successfully, false if a user with the same ID already exists.
+   */
+  public boolean addUser(User user) {
+    for (User existingUser : users) {
+      if (existingUser.getId().equals(user.getId())) {
+        return false; // User with the same ID already exists
+      }
     }
+    users.add(user);
+    return true;
+  }
 }
