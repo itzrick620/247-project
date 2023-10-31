@@ -33,9 +33,13 @@ public class ProjectList {
    * @param project The project to be added.
    * @return true if the project was added successfully, false otherwise.
    */
-  public Project addProject(String name) {
+  public ArrayList<Project> addProject(String name) {
     Project project = new Project(name);
-    return project;
+    return new ArrayList<>(projects);
+  }
+
+  public void saveProjects() {
+    Database.saveProjects(projects);
   }
 
   /**
