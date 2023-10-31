@@ -51,10 +51,10 @@ public class Project {
      * @param name the name of the task to be added
      * @return the added task
      */
-    public Task addTask(String name) {
+    public ArrayList<Task> addTask(String name) {
         Task task = new Task(name);
         tasks.add(task);
-        return task;
+        return new ArrayList<Task>(tasks);
     }
 
     /**
@@ -129,6 +129,7 @@ public class Project {
 
     /**
      * Gets the columns associated with this project.
+     * @param column
      *
      * @return an array of columns
      */
@@ -204,9 +205,6 @@ public class Project {
      *
      * @param column the column to be added
      */
-    public void addColumn(Column column) {
-        columns.add(column);
-    }
 
     /**
      * Retrieves a task by its ID.
