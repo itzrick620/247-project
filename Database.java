@@ -21,9 +21,9 @@ import org.json.simple.parser.ParseException;
 public class Database {
 
   private static final String USERS_JSON_FILENAME =
-    "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\user.json";
+    "jsons\\user.json";
   private static final String PROJECTS_JSON_FILENAME =
-    "C:\\Users\\gbujo\\VSCode_GitHub\\247-project\\jsons\\project.json";
+    "jsons\\project.json";
 
   /**
    * Retrieves a list of users from the JSON file.
@@ -182,7 +182,7 @@ public class Database {
         for (Object columnObj : columnsArray) {
             JSONObject columnJson = (JSONObject) columnObj;
             Column column = parseColumn(columnJson, project);
-            project.addColumn(column);
+            project.getColumns();
         }
 
         return project;
