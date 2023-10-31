@@ -9,7 +9,7 @@ public class Column {
     
     private final String title; // The title of the column
     private final ArrayList<Task> tasks; // The list of tasks in the column
-    
+    private final ArrayList<Column> columns;
 
     /**
      * Constructs a new Column with the given title.
@@ -19,6 +19,23 @@ public class Column {
     public Column(String title) {
         this.title = title;
         this.tasks = new ArrayList<>();
+        this.columns = new ArrayList<>();
+    }
+
+    public ArrayList<Column> createColumns(String title) {
+        Column abandoned = new Column("Abandoned");
+        columns.add(abandoned);
+
+        Column doing = new Column("Doing");
+        columns.add(doing);
+
+        Column todo = new Column("ToDo");
+        columns.add(todo);
+
+        Column done = new Column("Done");
+        columns.add(done);
+
+        return columns;
     }
 
     /**
