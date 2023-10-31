@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.xml.crypto.Data;
+
 /**
  * This class represents a project management system, providing functionalities
  * for user authentication, project and task management.
@@ -8,7 +10,7 @@ import java.util.Scanner;
 public class ProjectManagementSystem {
 
   private User user;
-  private Project project;
+  private ArrayList<Project> project;
   private final UserList userList;
   private final ProjectList projectList;
 
@@ -47,6 +49,8 @@ public class ProjectManagementSystem {
    * Logs out the current user and resets the state.
    */
   public void logout() {
+    Database.saveProjects(project);
+    Database.saveUsers();
     this.user = null;
     this.project = null;
     System.out.println("User has been logged out.");
@@ -106,7 +110,7 @@ public class ProjectManagementSystem {
    * @param taskName the name of the new task
    * @return true if the task is added successfully, false otherwise
    */
-  public boolean addTaskToProject(String taskName) {
+  public boolean addTaskToProject(String name) {
     if (project == null) {
       System.out.println(
         "No project selected. Please choose a project or create one."
@@ -114,7 +118,7 @@ public class ProjectManagementSystem {
       return false;
     }
 
-    Task task = project.addTask(taskName);
+    Task task = new Task(name);
     if (task != null) {
       ArrayList<Project> projectList = ProjectList
         .getInstance()
