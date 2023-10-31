@@ -5,76 +5,93 @@ import java.util.ArrayList;
  * It provides methods to add, remove, get, and retrieve all projects in the list.
  */
 public class ProjectList {
-    private ArrayList<Project> projects;
 
-    // Private constructor to enforce the Singleton pattern
-    private ProjectList() {
-        projects = new ArrayList<>();
+  private ArrayList<Project> projects;
+
+  // Private constructor to enforce the Singleton pattern
+  private ProjectList() {
+    projects = new ArrayList<>();
+  }
+
+  private static ProjectList projectList;
+
+  /**
+   * Get the instance of the ProjectList using the Singleton pattern.
+   *
+   * @return The ProjectList instance.
+   */
+  public static ProjectList getInstance() {
+    if (projectList == null) {
+      projectList = new ProjectList();
     }
+    return projectList;
+  }
 
-    private static ProjectList projectList;
+  /**
+   * Adds a new project to the list.
+   *
+   * @param project The project to be added.
+   * @return true if the project was added successfully, false otherwise.
+   */
+  public Project addProject(String name) {
+    Project project = new Project(name);
+    return project;
+  }
 
-    /**
-     * Get the instance of the ProjectList using the Singleton pattern.
-     *
-     * @return The ProjectList instance.
-     */
-    public static ProjectList getInstance() {
-        if (projectList == null) {
-            projectList = new ProjectList();
-        }
-        return projectList;
+  /**
+   * Removes a project from the list.
+   *
+   * @param project The project to be removed.
+   * @return true if the project was removed successfully, false otherwise.
+   */
+  public boolean removeProject(String name) {
+    Project projectToRemove = null;
+    for (Project project : projects) {
+      if (project.getName().equals(name)) {
+        projectToRemove = project;
+        break;
+      }
     }
+    return projectToRemove != null && projects.remove(projectToRemove);
+  }
 
-    /**
-     * Adds a new project to the list.
-     *
-     * @param project The project to be added.
-     * @return true if the project was added successfully, false otherwise.
-     */
-    public Project addProject(String name) {
-        Project project = new Project(name);
+  /**
+   * Retrieves a project from the list by its name.
+   *
+   * @param name The name of the project to be retrieved.
+   * @return The project with the specified name, or null if not found.
+   */
+  public Project getProject(String name) {
+    for (Project project : projects) {
+      if (project.getName().equals(name)) {
         return project;
+      }
     }
+    return null;
+  }
 
-    /**
-     * Removes a project from the list.
-     *
-     * @param project The project to be removed.
-     * @return true if the project was removed successfully, false otherwise.
-     */
-    public boolean removeProject(String name) {
-        Project projectToRemove = null;
-        for (Project project : projects) {
-            if (project.getName().equals(name)) {
-                projectToRemove = project;
-                break;
-            }
-        }
-        return projectToRemove != null && projects.remove(projectToRemove);
-    }
+  /**
+   * Retrieves a list of all projects in the project list.
+   *
+   * @return An ArrayList containing all projects in the list.
+   */
+  public ArrayList<Project> getAllProjects() {
+    return projects;
+  }
 
-    /**
-     * Retrieves a project from the list by its name.
-     *
-     * @param name The name of the project to be retrieved.
-     * @return The project with the specified name, or null if not found.
-     */
-    public Project getProject(String name) {
-        for (Project project : projects) {
-            if (project.getName().equals(name)) {
-                return project;
-            }
-        }
-        return null;
+  /**
+   * Adds an existing project to the project list.
+   *
+   * @param project The project to add.
+   * @return true if the project was added successfully, false if a project with the same ID already exists.
+   */
+  public boolean addProject(Project project) {
+    for (Project existingProject : projects) {
+      if (existingProject.getId().equals(project.getId())) {
+        return false; // Project with the same ID already exists
+      }
     }
-
-    /**
-     * Retrieves a list of all projects in the project list.
-     *
-     * @return An ArrayList containing all projects in the list.
-     */
-    public ArrayList<Project> getAllProjects() {
-        return projects;
-    }
+    projects.add(project);
+    return true;
+  }
 }
