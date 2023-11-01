@@ -1,42 +1,18 @@
 [
-    {
-        "firstName": "John",
-        "lastName": "Smith",
-        "password": "asdf99",
-        "UUID": "2e060e4c-d377-48d9-bb95-d237d1959405",
-        "email": "jsmith@gmail.com",
-        "username": "JSmith99"
-    },
-    {
-        "firstName": "Sara",
-        "lastName": "Walker",
-        "password": "asdf33",
-        "UUID": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
-        "email": "swalker@gmail.com",
-        "username": "SkyWalker33"
-    },
-    {
-        "firstName": "Amy",
-        "lastName": "Smith",
-        "password": "12345",
-        "UUID": "d978f625-8fdb-4b10-8ce3-3acceffdbe22",
-        "email": "asmith@gmail.com",
-        "username": "asmith"
-    },
-    {
-        "firstName": "Bobby",
-        "lastName": "White",
-        "password": "12345",
-        "UUID": "68e13b17-3936-4c01-bbad-2232db49d12d",
-        "email": "bwhite@gmail.com",
-        "username": "bwhite"
-    },
-    {
-        "firstName": "George",
-        "lastName": "Bujoreanu",
-        "password": "Dog101",
-        "UUID": "146c7f07-fcfa-4820-ad2f-d00aae094372",
-        "email": "gbujoreanu@gmail.com",
-        "username": "gbujor"
-    }
+  {
+    "firstName": "George",
+    "lastName": "Bujoreanu",
+    "password": "Dog101",
+    "UUID": "146c7f07-fcfa-4820-ad2f-d00aae094372",
+    "email": "gbujoreanu@gmail.com",
+    "username": "dev1"
+  },
+  {
+    "firstName": "spencer",
+    "lastName": "goldfine",
+    "password": "ididthiswork",
+    "UUID": "7bfe05cd-a494-4131-a5ff-4f56c13cf68f",
+    "email": "spencergold7704@gmail.com",
+    "username": "dev2"
+  }
 ]
