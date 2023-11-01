@@ -112,10 +112,6 @@ public class Database {
                 JSONObject projectJson = (JSONObject) obj;
                 Project project = parseProject(projectJson);
                 
-                if (project.getColumns().isEmpty()) {
-                    project.setColumns(Column.createColumns());
-                }
-    
                 projects.add(project);
             }
         } catch (IOException | ParseException e) {
@@ -129,7 +125,8 @@ public class Database {
     /**
      * Saves a list of projects to a JSON file.
      */
-    public static boolean saveProjects(ArrayList<Project> projects) {
+    public static boolean saveProjects() {
+        ArrayList<Project> projects = ProjectList.getInstance().getAllProjects();
         System.out.println("Saving projects to JSON...");
         try {
             JSONArray projectArray = new JSONArray();
@@ -186,10 +183,6 @@ public class Database {
             JSONObject columnJson = (JSONObject) columnObj;
             Column column = parseColumn(columnJson, project);
             project.addColumn(column);
-        }
-        
-        if (project.getColumns().isEmpty()) {
-            project.setColumns(Column.createColumns());
         }
     
         return project;

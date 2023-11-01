@@ -22,7 +22,6 @@ public class ProjectManagementSystem {
   public ProjectManagementSystem() {
     userList = UserList.getInstance();
     projectList = ProjectList.getInstance();
-    initializeData(); // Load users and projects from the database
   }
 
   /**
@@ -50,7 +49,7 @@ public class ProjectManagementSystem {
    * Logs out the current user and resets the state.
    */
   public void logout() {
-    Database.saveProjects(projects);
+    Database.saveProjects();
     Database.saveUsers();
     this.user = null;
     this.project = null;
@@ -120,17 +119,8 @@ public class ProjectManagementSystem {
     }
 
     Task task = new Task(name);
-    if (task != null) {
-      ArrayList<Project> projectList = ProjectList
-        .getInstance()
-        .getAllProjects();
-      boolean isSaveSuccessful = Database.saveProjects(projectList);
-      if (!isSaveSuccessful) {
-        // Handle database save failure
-        System.out.println("Failed to save project data to the database.");
-      }
-    }
-    return task != null;
+    ProjectList.getInstance();
+    return true;
   }
 
   /**
@@ -154,7 +144,7 @@ public class ProjectManagementSystem {
     Comment comment = new Comment(userInput, user);
     project.addComment(comment);
     ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
-    boolean isSaveSuccessful = Database.saveProjects(projectList);
+    boolean isSaveSuccessful = Database.saveProjects();
     if (!isSaveSuccessful) {
       System.out.println("Failed to save project data to the database.");
       return false;
@@ -202,29 +192,5 @@ public class ProjectManagementSystem {
     for (User user : users) {
       userList.addUser(user);
     }
-  }
-
-  /**
-   * Loads projects from the database.
-   */
-  private void loadProjects() {
-    try {
-      ArrayList<Project> projects = Database.getProjects();
-      ProjectList projectList = ProjectList.getInstance();
-      for (Project project : projects) {
-        projectList.addProject(project);
-      }
-    } catch (Exception e) {
-      System.out.println("Failed to load projects from the database: " + e.getMessage());
-      e.printStackTrace();
-    }
-  }
-
-  /**
-   * Initializes the data by loading users and projects from the database.
-   */
-  private void initializeData() {
-    loadUsers();
-    loadProjects();
   }
 }

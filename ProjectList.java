@@ -10,7 +10,7 @@ public class ProjectList {
 
   // Private constructor to enforce the Singleton pattern
   private ProjectList() {
-    projects = new ArrayList<>();
+    projects = Database.getProjects();
   }
 
   private static ProjectList projectList;
@@ -35,11 +35,12 @@ public class ProjectList {
    */
   public ArrayList<Project> addProject(String name) {
     Project project = new Project(name);
+    projects.add(project);
     return new ArrayList<>(projects);
   }
 
   public void saveProjects() {
-    Database.saveProjects(projects);
+    Database.saveProjects();
   }
 
   /**
@@ -89,13 +90,13 @@ public class ProjectList {
    * @param project The project to add.
    * @return true if the project was added successfully, false if a project with the same ID already exists.
    */
-  public boolean addProject(Project project) {
-    for (Project existingProject : projects) {
-      if (existingProject.getId().equals(project.getId())) {
-        return false; // Project with the same ID already exists
-      }
-    }
-    projects.add(project);
-    return true;
-  }
+  // public boolean addProject(Project project) {
+  //   for (Project existingProject : projects) {
+  //     if (existingProject.getId().equals(project.getId())) {
+  //       return false; // Project with the same ID already exists
+  //     }
+  //   }
+  //   projects.add(project);
+  //   return true;
+  // }
 }

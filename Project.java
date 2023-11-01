@@ -65,6 +65,17 @@ public class Project {
     public void removeTask(Task task) {
         tasks.remove(task);
     }
+/* 
+    public static ArrayList<Column> createColumns() {
+        ArrayList<Column> columns = new ArrayList<>();
+
+        columns.add(new Column("Abandoned"));
+        columns.add(new Column("Doing"));
+        columns.add(new Column("ToDo"));
+        columns.add(new Column("Done"));
+
+        return columns;
+    }*/
 
     /**
      * Shares the project.

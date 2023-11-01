@@ -22,17 +22,6 @@ public class Column {
         this.columns = new ArrayList<>();
     }
 
-    public static ArrayList<Column> createColumns() {
-        ArrayList<Column> columns = new ArrayList<>();
-
-        columns.add(new Column("Abandoned"));
-        columns.add(new Column("Doing"));
-        columns.add(new Column("ToDo"));
-        columns.add(new Column("Done"));
-
-        return columns;
-    }
-
     /**
      * Adds a task to the column.
      *
