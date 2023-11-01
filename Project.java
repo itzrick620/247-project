@@ -48,34 +48,21 @@ public class Project {
     /**
      * Adds a task to the project.
      *
-     * @param name the name of the task to be added
+     * @param task the name of the task to be added
      * @return the added task
      */
-    public ArrayList<Task> addTask(String name) {
-        Task task = new Task(name);
-        tasks.add(task);
-        return new ArrayList<Task>(tasks);
+    public void addTask(Task task) {
+        this.tasks.add(task);
     }
 
-    /**
-     * Removes a task from the project.
-     *
-     * @param task the task to be removed
-     */
-    public void removeTask(Task task) {
-        tasks.remove(task);
-    }
-/* 
-    public static ArrayList<Column> createColumns() {
-        ArrayList<Column> columns = new ArrayList<>();
-
-        columns.add(new Column("Abandoned"));
-        columns.add(new Column("Doing"));
-        columns.add(new Column("ToDo"));
-        columns.add(new Column("Done"));
-
-        return columns;
-    }*/
+    // /**
+    //  * Removes a task from the project.
+    //  *
+    //  * @param task the task to be removed
+    //  */
+    // public void removeTask(Task task) {
+    //     tasks.remove(task);
+    // }
 
     /**
      * Shares the project.
@@ -111,14 +98,14 @@ public class Project {
         return id;
     }
 
-    /**
-     * Gets the tasks associated with this project.
-     *
-     * @return a list of tasks
-     */
-    public ArrayList<Task> getTasks() {
-        return new ArrayList<>(tasks);
-    }
+    // /**
+    //  * Gets the tasks associated with this project.
+    //  *
+    //  * @return a list of tasks
+    //  */
+    // public ArrayList<Task> getTasks() {
+    //     return new ArrayList<>(tasks);
+    // }
 
     /**
      * Adds a comment to this project.
@@ -136,6 +123,18 @@ public class Project {
      */
     public ArrayList<Comment> getComments() {
         return new ArrayList<>(comments);
+    }
+
+    public static ArrayList<Column> createColumns() {
+        ArrayList<Column> columns = new ArrayList<>();
+
+        columns.add(new Column("Added Tasks"));
+        columns.add(new Column("Abandoned"));
+        columns.add(new Column("Doing"));
+        columns.add(new Column("ToDo"));
+        columns.add(new Column("Done"));
+
+        return columns;
     }
     
 
@@ -273,15 +272,22 @@ public class Project {
         this.columns = columns;
     }
 
+    public boolean moveTaskToColumn(UUID taskId, Column sourceColumn, Column targetColumn) {
+        Task taskToMove = sourceColumn.getTaskById(taskId);
+        if (taskToMove != null) {
+            targetColumn.addTask(taskToMove);
+            sourceColumn.removeTask(taskId);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Adds a column to this project.
      *
      * @param column the column to be added
      */
     public void addColumn(Column column) {
-        if (this.columns == null) {
-            this.columns = new ArrayList<>();
-        }
         this.columns.add(column);
     }
 
@@ -292,6 +298,5 @@ public class Project {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
-    
 }
 
