@@ -22,18 +22,13 @@ public class Column {
         this.columns = new ArrayList<>();
     }
 
-    public ArrayList<Column> createColumns(String title) {
-        Column abandoned = new Column("Abandoned");
-        columns.add(abandoned);
+    public static ArrayList<Column> createColumns() {
+        ArrayList<Column> columns = new ArrayList<>();
 
-        Column doing = new Column("Doing");
-        columns.add(doing);
-
-        Column todo = new Column("ToDo");
-        columns.add(todo);
-
-        Column done = new Column("Done");
-        columns.add(done);
+        columns.add(new Column("Abandoned"));
+        columns.add(new Column("Doing"));
+        columns.add(new Column("ToDo"));
+        columns.add(new Column("Done"));
 
         return columns;
     }
