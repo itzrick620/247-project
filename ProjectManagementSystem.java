@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.UUID;
 
 import javax.xml.crypto.Data;
 
@@ -112,16 +113,24 @@ public class ProjectManagementSystem {
    */
   public boolean addTaskToProject(String name) {
     if (project == null) {
-      System.out.println(
-        "No project selected. Please choose a project or create one."
-      );
-      return false;
+        System.out.println("No project selected. Please choose a project or create one.");
+        return false;
+    }
+    if (user == null) {
+        System.out.println("No user logged in. Please log in first.");
+        return false;
     }
 
     Task task = new Task(name);
-    ProjectList.getInstance();
+    project.addTask(task);  // Add the task to the project
+    ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
+    boolean isSaveSuccessful = Database.saveProjects(); // Save the updated projects to the database
+    if (!isSaveSuccessful) {
+        System.out.println("Failed to save project data to the database.");
+        return false;
+    }
     return true;
-  }
+}
 
   /**
    * Adds a comment to the current project.
@@ -183,6 +192,35 @@ public class ProjectManagementSystem {
       scanner.next(); // clear the invalid input
     }
   }
+
+//   public boolean createProject(String name) {
+//     if (user == null) {
+//         System.out.println("No user logged in. Please log in first.");
+//         return false;
+//     }
+
+//     // Create a new project
+//     Project project = new Project(UUID.randomUUID(), name);
+
+//     // Create and add the base 5 columns
+//     ArrayList<Column> baseColumns = project.createColumns();
+//     project.setColumns(baseColumns);
+
+//     // Set the project's scrum master and add the project to the user's projects
+//     project.setScrumMaster(user);
+//     // user.addProject(project);
+
+//     // Save the updated projects to the database
+//     ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
+//     boolean isSaveSuccessful = Database.saveProjects();
+
+//     if (!isSaveSuccessful) {
+//         System.out.println("Failed to save project data to the database.");
+//         return false;
+//     }
+
+//     return true;
+// }
 
   /**
    * Loads users from the database.
