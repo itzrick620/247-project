@@ -11,10 +11,10 @@ public class Project {
     private String footnotes;
     private User owner;
     private User scrumMaster;
-    private final ArrayList<Comment> comments;
-    private final ArrayList<User> developers;
+    private ArrayList<Comment> comments;
+    private ArrayList<User> developers;
     private final ArrayList<Task> tasks;
-    private final ArrayList<Column> columns;
+    private ArrayList<Column> columns;
 
     /**
      * Constructs a new project with a generated UUID and the given name.
@@ -115,7 +115,7 @@ public class Project {
      * @param comment the comment to be added
      */
     public void addComment(Comment comment) {
-        comments.add(comment);
+        this.comments.add(comment);
     }
 
     /**
@@ -126,6 +126,7 @@ public class Project {
     public ArrayList<Comment> getComments() {
         return new ArrayList<>(comments);
     }
+    
 
     /**
      * Gets the columns associated with this project.
@@ -200,11 +201,7 @@ public class Project {
         this.scrumMaster = scrumMaster;
     }
 
-    /**
-     * Adds a column to this project.
-     *
-     * @param column the column to be added
-     */
+    
 
     /**
      * Retrieves a task by its ID.
@@ -260,5 +257,30 @@ public class Project {
     public User getOwner() {
         return owner;
     }
+
+    public void setColumns(ArrayList<Column> columns) {
+        this.columns = columns;
+    }
+
+    /**
+     * Adds a column to this project.
+     *
+     * @param column the column to be added
+     */
+    public void addColumn(Column column) {
+        if (this.columns == null) {
+            this.columns = new ArrayList<>();
+        }
+        this.columns.add(column);
+    }
+
+    public void setDevelopers(ArrayList<User> developers) {
+        this.developers = developers;
+    }
+    
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+    
 }
 
