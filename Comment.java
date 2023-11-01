@@ -125,7 +125,7 @@ public class Comment {
      * @return A sample Comment object.
      */
     public static Comment createSampleComment() {
-        User user = new User(UUID.randomUUID(), "username");
+        User user = new User("username");
         return new Comment("Some comment text", user);
     }
 }
