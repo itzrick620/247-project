@@ -10,7 +10,8 @@ import javax.xml.crypto.Data;
 public class ProjectManagementSystem {
 
   private User user;
-  private ArrayList<Project> project;
+  private Project project;
+  private ArrayList<Project> projects;
   private final UserList userList;
   private final ProjectList projectList;
 
@@ -49,7 +50,7 @@ public class ProjectManagementSystem {
    * Logs out the current user and resets the state.
    */
   public void logout() {
-    Database.saveProjects(project);
+    Database.saveProjects(projects);
     Database.saveUsers();
     this.user = null;
     this.project = null;
@@ -100,7 +101,7 @@ public class ProjectManagementSystem {
    * @return true if the project is created successfully, false otherwise
    */
   public boolean createProject(String name) {
-    project = ProjectList.getInstance().addProject(name);
+    projects = ProjectList.getInstance().addProject(name);
     return project != null;
   }
 
