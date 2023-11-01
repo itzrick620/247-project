@@ -20,10 +20,11 @@ import org.json.simple.parser.ParseException;
  */
 public class Database {
 
-  private static final String USERS_JSON_FILENAME =
-    "jsons\\user.json";
-  private static final String PROJECTS_JSON_FILENAME =
-    "jsons\\project.json";
+  private static final String USERS_JSON_FILENAME ="jsons\\user.json";
+  private static final String PROJECTS_JSON_FILENAME ="jsons\\project.json";
+  private static final String DATE_FORMAT = "MM/dd/yyyy HH:mm:ss";
+
+  private static ArrayList<User> allUsers; // Assuming this is loaded once and then queried in memory
 
   /**
    * Retrieves a list of users from the JSON file.
@@ -88,79 +89,83 @@ public class Database {
       fileWriter.flush();
       return true;
     } catch (IOException e) {
+      System.out.println("Error saving projects: " + e.getMessage());
       e.printStackTrace();
       return false;
     }
   }
+  static {
+    allUsers = getUsers(); // Load users once during initialization
+}
 
-/**
+    /**
      * Retrieves a list of projects from a JSON file.
-     *
-     * @return A list of projects, or an empty list if an error occurs.
      */
     public static ArrayList<Project> getProjects() {
         ArrayList<Project> projects = new ArrayList<>();
         JSONParser parser = new JSONParser();
-
+    
         try (FileReader fileReader = new FileReader(PROJECTS_JSON_FILENAME)) {
             JSONArray jsonArray = (JSONArray) parser.parse(fileReader);
-
+    
             for (Object obj : jsonArray) {
                 JSONObject projectJson = (JSONObject) obj;
                 Project project = parseProject(projectJson);
+                
+                if (project.getColumns().isEmpty()) {
+                    project.setColumns(Column.createColumns());
+                }
+    
                 projects.add(project);
             }
         } catch (IOException | ParseException e) {
             e.printStackTrace();
-            System.out.println(
-                    "An error occurred while retrieving the projects. Please try again later."
-            );
+            System.out.println("An error occurred while retrieving the projects. Please try again later.");
         }
-
+    
         return projects;
     }
 
     /**
      * Saves a list of projects to a JSON file.
-     *
-     * @param projects The list of projects to save.
-     * @return true if the save operation was successful, false otherwise.
      */
     public static boolean saveProjects(ArrayList<Project> projects) {
-        JSONArray projectArray = new JSONArray();
-
-        for (Project project : projects) {
-            JSONObject projectJson = projectToJson(project);
-            projectArray.add(projectJson);
-        }
-
-        try (FileWriter fileWriter = new FileWriter(PROJECTS_JSON_FILENAME)) {
-            fileWriter.write(projectArray.toJSONString());
-            return true;
+        System.out.println("Saving projects to JSON...");
+        try {
+            JSONArray projectArray = new JSONArray();
+    
+            for (Project project : projects) {
+                JSONObject projectJson = projectToJson(project);
+                projectArray.add(projectJson);
+            }
+    
+            try (FileWriter fileWriter = new FileWriter(PROJECTS_JSON_FILENAME)) {
+                fileWriter.write(projectArray.toJSONString());
+                System.out.println("Projects saved successfully.");
+                return true;
+            }
         } catch (IOException e) {
+            System.out.println("Error saving projects: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
     private static Project parseProject(JSONObject projectJson) throws ParseException {
-        // Parse project properties
         String projectId = (String) projectJson.get("projectId");
         String projectName = (String) projectJson.get("projectName");
         String footnotes = (String) projectJson.get("footnotes");
-
+    
         Project project = new Project(UUID.fromString(projectId), projectName);
         project.setFootnotes(footnotes);
-
-        // Parse and add comments
+    
         JSONArray commentsArray = (JSONArray) projectJson.get("comments");
         for (Object commentObj : commentsArray) {
             JSONObject commentJson = (JSONObject) commentObj;
             Comment comment = parseComment(commentJson);
             project.addComment(comment);
         }
-
-        // Parse and add developers
+    
         JSONArray developersArray = (JSONArray) projectJson.get("developers");
         for (Object developerObj : developersArray) {
             String developerId = (String) developerObj;
@@ -169,27 +174,28 @@ public class Database {
                 project.addDeveloper(developer);
             }
         }
-
-        // Parse and set scrum master
+    
         String scrumMasterId = (String) projectJson.get("scrumMaster");
         User scrumMaster = getUserById(scrumMasterId);
         if (scrumMaster != null) {
             project.setScrumMaster(scrumMaster);
         }
-
-        // Parse and add columns
+    
         JSONArray columnsArray = (JSONArray) projectJson.get("columns");
         for (Object columnObj : columnsArray) {
             JSONObject columnJson = (JSONObject) columnObj;
             Column column = parseColumn(columnJson, project);
-            project.getColumns();
+            project.addColumn(column);
         }
-
+        
+        if (project.getColumns().isEmpty()) {
+            project.setColumns(Column.createColumns());
+        }
+    
         return project;
     }
 
     private static Comment parseComment(JSONObject commentJson) {
-        // Parse comment properties
         String userInput = (String) commentJson.get("userInput");
         String userId = (String) commentJson.get("user");
         String dateString = (String) commentJson.get("date");
@@ -201,7 +207,7 @@ public class Database {
     }
 
     private static User getUserById(String userId) {
-        for (User user : getUsers()) {
+        for (User user : allUsers) {
             if (user.getId().toString().equals(userId)) {
                 return user;
             }
@@ -221,72 +227,64 @@ public class Database {
     private static Column parseColumn(JSONObject columnJson, Project project) {
         String title = (String) columnJson.get("title");
         Column column = new Column(title);
-
-        // Parse and add tasks
+    
         JSONArray tasksArray = (JSONArray) columnJson.get("tasks");
         for (Object taskObj : tasksArray) {
-            String taskId = (String) taskObj;
+            String taskId = (String) taskObj; // Task ID is a string in this case
             Task task = project.getTaskById(UUID.fromString(taskId));
             if (task != null) {
                 column.addTask(task);
             }
         }
-
+    
         return column;
     }
 
     private static JSONObject projectToJson(Project project) {
         JSONObject projectJson = new JSONObject();
+        
         projectJson.put("projectId", project.getId().toString());
         projectJson.put("projectName", project.getName());
         projectJson.put("footnotes", project.getFootnotes());
-
-        // Serialize comments
+        
         JSONArray commentsArray = new JSONArray();
         for (Comment comment : project.getComments()) {
             JSONObject commentJson = new JSONObject();
             commentJson.put("userInput", comment.getUserInput());
             commentJson.put("user", comment.getUser().getId().toString());
-            SimpleDateFormat dateFormat = new SimpleDateFormat(
-                    "MM/dd/yyyy HH:mm:ss"
-            );
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
             commentJson.put("date", dateFormat.format(comment.getDate()));
+            commentJson.put("replies", new JSONArray());  // Assuming replies are empty for now
             commentsArray.add(commentJson);
         }
         projectJson.put("comments", commentsArray);
-
-        // Serialize developers
+        
         JSONArray developersArray = new JSONArray();
         for (User developer : project.getDevelopers()) {
             developersArray.add(developer.getId().toString());
         }
         projectJson.put("developers", developersArray);
-
-        // Serialize scrum master
+        
         if (project.getScrumMaster() != null) {
-            projectJson.put(
-                    "scrumMaster",
-                    project.getScrumMaster().getId().toString()
-            );
+            projectJson.put("scrumMaster", project.getScrumMaster().getId().toString());
         }
-
-        // Serialize columns
+        
         JSONArray columnsArray = new JSONArray();
         for (Column column : project.getColumns()) {
             JSONObject columnJson = new JSONObject();
             columnJson.put("title", column.getTitle());
-
-            // Serialize tasks
+        
             JSONArray tasksArray = new JSONArray();
             for (Task task : column.getTasks()) {
                 tasksArray.add(task.getId().toString());
             }
             columnJson.put("tasks", tasksArray);
-
+        
             columnsArray.add(columnJson);
         }
         projectJson.put("columns", columnsArray);
-
+        
         return projectJson;
     }
+    
 }
