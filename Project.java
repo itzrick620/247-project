@@ -49,20 +49,23 @@ public class Project {
      * Adds a task to the project.
      *
      * @param task the name of the task to be added
+     * @return 
      * @return the added task
      */
-    public void addTask(Task task) {
-        this.tasks.add(task);
+    public ArrayList<Task> addTask(String name) {
+        Task task = new Task(name);
+        tasks.add(task);
+        return new ArrayList<Task>(tasks);
     }
 
-    // /**
-    //  * Removes a task from the project.
-    //  *
-    //  * @param task the task to be removed
-    //  */
-    // public void removeTask(Task task) {
-    //     tasks.remove(task);
-    // }
+    /**
+     * Removes a task from the project.
+     *
+     * @param task the task to be removed
+     */
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
 
     /**
      * Shares the project.
@@ -98,14 +101,14 @@ public class Project {
         return id;
     }
 
-    // /**
-    //  * Gets the tasks associated with this project.
-    //  *
-    //  * @return a list of tasks
-    //  */
-    // public ArrayList<Task> getTasks() {
-    //     return new ArrayList<>(tasks);
-    // }
+    /**
+     * Gets the tasks associated with this project.
+     *
+     * @return a list of tasks
+     */
+    public ArrayList<Task> getTasks() {
+        return new ArrayList<>(tasks);
+    }
 
     /**
      * Adds a comment to this project.
@@ -272,15 +275,15 @@ public class Project {
         this.columns = columns;
     }
 
-    public boolean moveTaskToColumn(UUID taskId, Column sourceColumn, Column targetColumn) {
-        Task taskToMove = sourceColumn.getTaskById(taskId);
-        if (taskToMove != null) {
-            targetColumn.addTask(taskToMove);
-            sourceColumn.removeTask(taskId);
-            return true;
-        }
-        return false;
-    }
+    // public boolean moveTaskToColumn(UUID taskId, Column sourceColumn, Column targetColumn) {
+    //     Task taskToMove = sourceColumn.getTaskById(taskId);
+    //     if (taskToMove != null) {
+    //         targetColumn.addTask(taskToMove);
+    //         sourceColumn.removeTask(taskId);
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     /**
      * Adds a column to this project.
@@ -288,6 +291,9 @@ public class Project {
      * @param column the column to be added
      */
     public void addColumn(Column column) {
+        if (this.columns == null) {
+            this.columns = new ArrayList<>();
+        }
         this.columns.add(column);
     }
 

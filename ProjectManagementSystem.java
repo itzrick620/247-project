@@ -50,7 +50,7 @@ public class ProjectManagementSystem {
    * Logs out the current user and resets the state.
    */
   public void logout() {
-    Database.saveProjects();
+    Database.saveProjects(projects);
     Database.saveUsers();
     this.user = null;
     this.project = null;
@@ -120,11 +120,12 @@ public class ProjectManagementSystem {
         System.out.println("No user logged in. Please log in first.");
         return false;
     }
-
+  
     Task task = new Task(name);
-    project.addTask(task);  // Add the task to the project
+    ProjectList.getInstance();
+    project.addTask(name);  // Add the task to the project
     ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
-    boolean isSaveSuccessful = Database.saveProjects(); // Save the updated projects to the database
+    boolean isSaveSuccessful = Database.saveProjects(projects); // Save the updated projects to the database
     if (!isSaveSuccessful) {
         System.out.println("Failed to save project data to the database.");
         return false;
@@ -153,7 +154,7 @@ public class ProjectManagementSystem {
     Comment comment = new Comment(userInput, user);
     project.addComment(comment);
     ArrayList<Project> projectList = ProjectList.getInstance().getAllProjects();
-    boolean isSaveSuccessful = Database.saveProjects();
+    boolean isSaveSuccessful = Database.saveProjects(projects);
     if (!isSaveSuccessful) {
       System.out.println("Failed to save project data to the database.");
       return false;

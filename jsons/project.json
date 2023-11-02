@@ -5,17 +5,10 @@
         "date": "10/17/2023",
         "replies": [],
         "userInput": "",
-        "user": "2e060e4c-d377-48d9-bb95-d237d1959405"
-      },
-      {
-        "date": "11/01/2023",
-        "replies": [],
-        "userInput": "Cool Comment",
-        "user": "146c7f07-fcfa-4820-ad2f-d00aae094372"
+        "user": "unknown"
       }
     ],
-    "scrumMaster": "2e060e4c-d377-48d9-bb95-d237d1959405",
-    "developers": ["2e060e4c-d377-48d9-bb95-d237d1959405"],
+    "developers": [],
     "columns": [{ "title": "Task Column", "tasks": [] }],
     "projectName": "project1",
     "projectId": "fdc03472-4871-4338-bc4d-94aa3e20bf53",
@@ -27,11 +20,10 @@
         "date": "10/17/2023",
         "replies": [],
         "userInput": "",
-        "user": "40fa2bd3-3072-426a-b48a-2e3053ee372c"
+        "user": "unknown"
       }
     ],
-    "scrumMaster": "40fa2bd3-3072-426a-b48a-2e3053ee372c",
-    "developers": ["40fa2bd3-3072-426a-b48a-2e3053ee372c"],
+    "developers": [],
     "columns": [{ "title": "Task Column", "tasks": [] }],
     "projectName": "project2",
     "projectId": "5d45c753-4c51-4dc6-a81e-9881762e9413",

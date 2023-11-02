@@ -40,7 +40,7 @@ public class ProjectList {
   }
 
   public void saveProjects() {
-    Database.saveProjects();
+    Database.saveProjects(projects);
   }
 
   /**

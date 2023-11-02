@@ -125,8 +125,8 @@ public class Database {
     /**
      * Saves a list of projects to a JSON file.
      */
-    public static boolean saveProjects() {
-        ArrayList<Project> projects = ProjectList.getInstance().getAllProjects();
+    public static boolean saveProjects(ArrayList<Project> projects) {
+        //  = ProjectList.getInstance().getAllProjects();
         System.out.println("Saving projects to JSON...");
         try {
             JSONArray projectArray = new JSONArray();
@@ -235,48 +235,55 @@ public class Database {
 
     private static JSONObject projectToJson(Project project) {
         JSONObject projectJson = new JSONObject();
-        
+    
         projectJson.put("projectId", project.getId().toString());
         projectJson.put("projectName", project.getName());
         projectJson.put("footnotes", project.getFootnotes());
-        
+    
         JSONArray commentsArray = new JSONArray();
         for (Comment comment : project.getComments()) {
             JSONObject commentJson = new JSONObject();
             commentJson.put("userInput", comment.getUserInput());
-            commentJson.put("user", comment.getUser().getId().toString());
+    
+            // Check if the comment's user is not null before accessing its properties
+            if (comment.getUser() != null) {
+                commentJson.put("user", comment.getUser().getId().toString());
+            } else {
+                // Handle the case where the user is null (you can set a default or omit the "user" key)
+                commentJson.put("user", "unknown");
+            }
+    
             SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
             commentJson.put("date", dateFormat.format(comment.getDate()));
             commentJson.put("replies", new JSONArray());  // Assuming replies are empty for now
             commentsArray.add(commentJson);
         }
         projectJson.put("comments", commentsArray);
-        
+    
         JSONArray developersArray = new JSONArray();
         for (User developer : project.getDevelopers()) {
             developersArray.add(developer.getId().toString());
         }
         projectJson.put("developers", developersArray);
-        
+    
         if (project.getScrumMaster() != null) {
             projectJson.put("scrumMaster", project.getScrumMaster().getId().toString());
         }
-        
-        JSONArray columnsArray = new JSONArray();
+    JSONArray columnsArray = new JSONArray();
         for (Column column : project.getColumns()) {
             JSONObject columnJson = new JSONObject();
             columnJson.put("title", column.getTitle());
-        
+    
             JSONArray tasksArray = new JSONArray();
             for (Task task : column.getTasks()) {
                 tasksArray.add(task.getId().toString());
             }
             columnJson.put("tasks", tasksArray);
-        
+    
             columnsArray.add(columnJson);
         }
         projectJson.put("columns", columnsArray);
-        
+    
         return projectJson;
     }
     

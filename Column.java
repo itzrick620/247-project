@@ -87,17 +87,17 @@ public class Column {
         return new ArrayList<>(tasks);
     }
 
-    public boolean moveTaskTo(Column targetColumn, UUID taskId) {
-        Task taskToMove = getTaskById(taskId);
-        if (taskToMove != null) {
-            if (targetColumn != this) {
-                targetColumn.addTask(taskToMove);
-                tasks.remove(taskToMove);
-            }
-            return true;
-        }
-        return false;
-    }
+    // public boolean moveTaskTo(Column targetColumn, UUID taskId) {
+    //     Task taskToMove = getTaskById(taskId);
+    //     if (taskToMove != null) {
+    //         if (targetColumn != this) {
+    //             targetColumn.addTask(taskToMove);
+    //             tasks.remove(taskToMove);
+    //         }
+    //         return true;
+    //     }
+    //     return false;
+    // }
 
     /**
      * Gets the title of the column.
