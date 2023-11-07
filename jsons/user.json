@@ -14,5 +14,14 @@
     "UUID": "7bfe05cd-a494-4131-a5ff-4f56c13cf68f",
     "email": "spencergold7704@gmail.com",
     "username": "dev2"
+  },
+  {
+    "firstName": "Ricky",
+    "lastName": "Garretson",
+    "password": "ham",
+    "UUID": "6cadeede-4bd5-484c-bfa3-934ab08a1abd",
+    "email": "garretsonricky1@gmail.com",
+    "username": "dev3"
   }
+  
 ]
